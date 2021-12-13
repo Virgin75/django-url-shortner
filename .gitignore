@@ -2,3 +2,5 @@
 env
 /env
 migrations
+data
+/data
