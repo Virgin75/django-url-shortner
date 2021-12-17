@@ -6,7 +6,7 @@ User = get_user_model()
 class Link(models.Model):
     owner = models.ForeignKey(User , on_delete=models.CASCADE)
     long_url = models.URLField(max_length=250)
-    short_slug = models.SlugField(max_length=50)
+    short_slug = models.SlugField(max_length=50, unique=True)
     nb_hits = models.PositiveIntegerField()
 
     def __str__(self):
