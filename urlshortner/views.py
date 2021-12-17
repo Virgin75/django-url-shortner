@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, render
 from .models import Link
 
 class RedirectToLinkView(View):
@@ -17,3 +17,11 @@ class RedirectToLinkView(View):
 
         return HttpResponse(link_obj.nb_hits)
         #return HttpResponseRedirect(redirect_to)
+
+class ShortenLinkView(View):
+
+    def get(self, request):
+        return render(request, "urlshortner/index.html", {})
+
+    def post(self, request, url_slug):
+        pass

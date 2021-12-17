@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import RedirectToLinkView
+from .views import RedirectToLinkView, ShortenLinkView
  
 urlpatterns = [
-    path('<slug:url_slug>', RedirectToLinkView.as_view()),
+    path('shorten', ShortenLinkView.as_view()),
+    path('goto/<slug:url_slug>', RedirectToLinkView.as_view()),
 ]
