@@ -1,7 +1,9 @@
+from django.forms.fields import NullBooleanField
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from django.shortcuts import get_object_or_404, render
 from .models import Link
+from .forms import LinkForm
 
 class RedirectToLinkView(View):
 
@@ -21,7 +23,17 @@ class RedirectToLinkView(View):
 class ShortenLinkView(View):
 
     def get(self, request):
-        return render(request, "urlshortner/index.html", {})
+        form = LinkForm()
+        return render(request, "urlshortner/index.html", {'form': form})
 
     def post(self, request, url_slug):
-        pass
+        # create a form instance and populate it with data from the request:
+        form = LinkForm(request.POST)
+        # check whether it's valid:
+        if form.is_valid():
+            shortened_url = Link(
+                owner=None,
+                long_url= form.cleaned_data['long_url'],
+                short_slug= pass
+            )
+            return render(request, "urlshortner/index.html", {'form': form})
