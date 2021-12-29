@@ -28,12 +28,19 @@ class ShortenLinkView(View):
         return render(request, "urlshortner/index.html", {'form': form})
 
     def post(self, request):
+
+        def get_user():
+            if request.user.is_anonymous:
+                return None
+            else:
+                return request.user
+
         # create a form instance and populate it with data from the request:
         form = LinkForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
             shortened_url = Link(
-                owner=None,
+                owner=get_user(),
                 long_url= form.cleaned_data['long_url'],
                 short_slug= generate_unique_slug()
             )
