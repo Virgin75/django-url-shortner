@@ -1,5 +1,7 @@
 <html>
-  {% if not user.is_anonymous %}<span>Hey {{ user }},</span>
+  {% include "urlshortner/header.html" %} {% if not user.is_anonymous %}<span
+    >Hey {{ user }},</span
+  >
   {% endif %}
   <h1>Here is your shorten link :</h1>
   <a href="{{ domain }}/{{ shorten_link }}">

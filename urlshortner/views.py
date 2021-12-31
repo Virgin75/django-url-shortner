@@ -1,7 +1,10 @@
+from django.contrib.auth import login
 from django.forms.fields import NullBooleanField
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
 from django.shortcuts import get_object_or_404, render
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from .models import Link
 from .forms import LinkForm
 from .utils import generate_unique_slug
@@ -52,8 +55,7 @@ class ShortenLinkView(View):
                 }
             )
 
-
-class MyLinksView(View):
+class MyLinksView(LoginRequiredMixin, View):
     def get(self, request):
         user = request.user
         my_links = Link.objects.filter(owner=user)

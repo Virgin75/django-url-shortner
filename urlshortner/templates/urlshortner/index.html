@@ -1,5 +1,7 @@
 <html>
-  {% if not user.is_anonymous %}<span>Logged in as {{ user }}</span>
+  {% include "urlshortner/header.html" %} {% if not user.is_anonymous %}<span
+    >Logged in as {{ user }}</span
+  >
   {% endif %}
   <h1>Fill up the form to shorten your URL</h1>
   <form action="{% url 'urlshortner:shortenlinkview' %}" method="post">
