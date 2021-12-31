@@ -3,7 +3,9 @@
   <ul>
     <li><a href="{% url 'urlshortner:shortenlinkview' %}">Home</a></li>
     <li><a href="{% url 'urlshortner:mylinksview' %}">My links</a></li>
-    <li>Settings</li>
+    <li>
+      <a href="{% url 'users:settingsview' user.id %}">Settings</a>
+    </li>
     <li><a href="{% url 'users:logoutview' %}">Log out</a></li>
   </ul>
 </header>

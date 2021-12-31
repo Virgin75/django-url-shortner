@@ -1,12 +1,12 @@
-from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
+from django.views.generic.edit import UpdateView
 from django.shortcuts import redirect, render
 from django.contrib import messages
 from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth import get_user_model
 
-
 from .forms import LoginForm, SignupForm
+from .models import CustomUser
 
 class LogInView(View):
 
@@ -61,3 +61,15 @@ class LogOutView(View):
     def get(self, request):
         logout(request)
         return render(request, 'users/loggedout.html')
+
+
+class SettingsView(UpdateView):
+    model = CustomUser
+    fields = ['email', 'first_name', 'last_name']
+    template_name = 'users/settings.html'
+
+    def get_success_url(self):
+        user_id = self.request.user.id
+        redirect_to = f'/settings/{user_id}'
+        messages.add_message(self.request, messages.SUCCESS, 'Profile updated successfully.')
+        return redirect_to
