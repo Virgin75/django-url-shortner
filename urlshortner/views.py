@@ -18,8 +18,7 @@ class RedirectToLinkView(View):
         link_obj.nb_hits += 1
         link_obj.save()
 
-        return HttpResponse(link_obj.nb_hits)
-        #return HttpResponseRedirect(redirect_to)
+        return HttpResponseRedirect(redirect_to)
 
 class ShortenLinkView(View):
 
@@ -51,4 +50,18 @@ class ShortenLinkView(View):
                     'shorten_link': shortened_url.short_slug,
                     'domain': request.build_absolute_uri('/')[:-1]
                 }
-                )
+            )
+
+
+class MyLinksView(View):
+    def get(self, request):
+        user = request.user
+        my_links = Link.objects.filter(owner=user)
+
+        return render(
+            request, "urlshortner/my-links.html",
+            {
+                'my_links': my_links,
+                'domain': request.build_absolute_uri('/')[:-1]
+            }
+        )

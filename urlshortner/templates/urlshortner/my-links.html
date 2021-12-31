@@ -1,0 +1,26 @@
+<html>
+  <span
+    >Hey {{ user }}, find below a list of all the shortened URLs you
+    created</span
+  ><br />
+  <table>
+    <thead>
+      <tr>
+        <th scope="col">Previous URL</th>
+        <th scope="col">New URL</th>
+        <th scope="col"># Nb. hits</th>
+      </tr>
+    </thead>
+    {% for link in my_links %}
+    <tr>
+      <td>{{ link.long_url }}</td>
+      <td>
+        <a href="{{ domain }}/{{ link.short_slug }}">
+          {{ domain }}/{{ link.short_slug }}
+        </a>
+      </td>
+      <td>{{ link.nb_hits }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</html>
