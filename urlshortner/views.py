@@ -45,4 +45,10 @@ class ShortenLinkView(View):
                 short_slug= generate_unique_slug()
             )
             shortened_url.save()
-            return render(request, "urlshortner/index.html", {'form': form})
+            return render(
+                request, "urlshortner/link-created.html",
+                {
+                    'shorten_link': shortened_url.short_slug,
+                    'domain': request.build_absolute_uri('/')[:-1]
+                }
+                )
