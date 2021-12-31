@@ -4,6 +4,9 @@
     >Hey {{ user }}, find below a list of all the shortened URLs you
     created</span
   ><br />
+  {% if my_links|length == 0 %}
+  <br /><span>You don't have any link created yet.</span>
+  {% else %}
   <table>
     <thead>
       <tr>
@@ -24,4 +27,5 @@
     </tr>
     {% endfor %}
   </table>
+  {% endif %}
 </html>
