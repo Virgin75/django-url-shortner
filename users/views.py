@@ -1,7 +1,8 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
-from django.shortcuts import get_object_or_404, render
-from django.contrib.auth import authenticate
+from django.shortcuts import redirect, render
+from django.contrib import messages
+from django.contrib.auth import authenticate, logout, login
 from django.contrib.auth import get_user_model
 
 
@@ -20,8 +21,16 @@ class LogInView(View):
         if form.is_valid():
             user = authenticate(email=form.cleaned_data['username'], 
                         password=form.cleaned_data['password'])
-            print(user)
-            return render(request, "users/login.html", {'form': form})
+            
+            if user is not None:
+                login(request, user)
+                return redirect('/shorten', user=user)
+            else:
+                #error cant login
+                messages.add_message(request, messages.ERROR, 'Cannot login with the provided credentials.')
+        messages.add_message(request, messages.ERROR, 'Form data is invalid.')
+        return render(request, "users/login.html", {'form': form})
+
 
 
 class SignUpView(View):
@@ -39,5 +48,16 @@ class SignUpView(View):
             user = get_user_model().objects.create_user(
                     email=form.cleaned_data['email'], 
                     password=form.cleaned_data['password1'])
-            print(user)
-            return render(request, "users/signup.html", {'form': form})
+           
+            if user is not None:
+                login(request, user)
+                return redirect('/shorten', user=user)
+
+        messages.add_message(request, messages.ERROR, 'Form data is invalid.')
+        return render(request, "users/signup.html", {'form': form})
+
+class LogOutView(View):
+
+    def get(self, request):
+        logout(request)
+        return render(request, 'users/loggedout.html')

@@ -1,6 +1,16 @@
 <html>
+  {% if messages %}
+  <ul class="messages">
+    {% for message in messages %}
+    <li>
+      {% if message.tags %}
+      <span class="{{ message.tags }}">{% endif %}{{ message }}</span>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
   <h1>Fill up the form to log in</h1>
-  <form action="{% url 'loginview' %}" method="post">
+  <form action="{% url 'users:loginview' %}" method="post">
     {% csrf_token %} {{ form }}
     <input type="submit" value="Submit" />
   </form>
