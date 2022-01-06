@@ -1,20 +1,32 @@
-{% if not user.is_anonymous %}
-<header>
-  <ul>
-    <li><a href="{% url 'urlshortner:shortenlinkview' %}">Home</a></li>
-    <li><a href="{% url 'urlshortner:mylinksview' %}">My links</a></li>
-    <li>
-      <a href="{% url 'users:settingsview' user.id %}">Settings</a>
-    </li>
-    <li><a href="{% url 'users:logoutview' %}">Log out</a></li>
-  </ul>
-</header>
-{% else %}
-<header>
-  <ul>
-    <li><a href="{% url 'urlshortner:shortenlinkview' %}">Home</a></li>
-    <li><a href="{% url 'users:signupview' %}">Sign up</a></li>
-    <li><a href="{% url 'users:loginview' %}">Log in</a></li>
-  </ul>
-</header>
-{% endif %}
+<html>
+  {% load static %}
+  <head>
+    <link rel="stylesheet" href="{% static 'urlshortner/css/style.css' %}" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  {% if not user.is_anonymous %}
+  <header>
+    <ul>
+      <li><a href="{% url 'urlshortner:shortenlinkview' %}">Home</a></li>
+      <li><a href="{% url 'urlshortner:mylinksview' %}">My links</a></li>
+      <li>
+        <a href="{% url 'users:settingsview' user.id %}">Settings</a>
+      </li>
+      <li><a href="{% url 'users:logoutview' %}">Log out</a></li>
+    </ul>
+  </header>
+  {% else %}
+  <header>
+    <ul>
+      <li><a href="{% url 'urlshortner:shortenlinkview' %}">Home</a></li>
+      <li><a href="{% url 'users:signupview' %}">Sign up</a></li>
+      <li><a href="{% url 'users:loginview' %}">Log in</a></li>
+    </ul>
+  </header>
+  {% endif %}
+</html>

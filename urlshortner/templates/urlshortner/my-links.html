@@ -1,31 +1,28 @@
-<html>
-  {% include "urlshortner/header.html" %}
-  <span
-    >Hey {{ user }}, find below a list of all the shortened URLs you
-    created</span
-  ><br />
-  {% if my_links|length == 0 %}
-  <br /><span>You don't have any link created yet.</span>
-  {% else %}
-  <table>
-    <thead>
-      <tr>
-        <th scope="col">Previous URL</th>
-        <th scope="col">New URL</th>
-        <th scope="col"># Nb. hits</th>
-      </tr>
-    </thead>
-    {% for link in my_links %}
+{% include "urlshortner/header.html" %}
+<span
+  >Hey {{ user }}, find below a list of all the shortened URLs you created</span
+><br />
+{% if my_links|length == 0 %}
+<br /><span>You don't have any link created yet.</span>
+{% else %}
+<table>
+  <thead>
     <tr>
-      <td>{{ link.long_url }}</td>
-      <td>
-        <a href="{{ domain }}/{{ link.short_slug }}">
-          {{ domain }}/{{ link.short_slug }}
-        </a>
-      </td>
-      <td>{{ link.nb_hits }}</td>
+      <th scope="col">Previous URL</th>
+      <th scope="col">New URL</th>
+      <th scope="col"># Nb. hits</th>
     </tr>
-    {% endfor %}
-  </table>
-  {% endif %}
-</html>
+  </thead>
+  {% for link in my_links %}
+  <tr>
+    <td>{{ link.long_url }}</td>
+    <td>
+      <a href="{{ domain }}/{{ link.short_slug }}">
+        {{ domain }}/{{ link.short_slug }}
+      </a>
+    </td>
+    <td>{{ link.nb_hits }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %}

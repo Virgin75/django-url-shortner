@@ -1,20 +1,18 @@
-<html>
-  {% include "urlshortner/header.html" %} {% if not user.is_anonymous %}<span
-    >Hey {{ user }},</span
-  >
-  {% endif %}
-  <h1>Here is your shorten link :</h1>
-  <a href="{{ domain }}/{{ shorten_link }}">
-    <span>{{ domain }}/{{ shorten_link }}</span>
-  </a>
+{% include "urlshortner/header.html" %} {% if not user.is_anonymous %}<span
+  >Hey {{ user }},</span
+>
+{% endif %}
+<h1>Here is your shorten link :</h1>
+<a href="{{ domain }}/{{ shorten_link }}">
+  <span>{{ domain }}/{{ shorten_link }}</span>
+</a>
 
-  {%if user.is_anonymous%}
-  <div>
-    <br />
-    <span
-      >Sign up to access data on how many people click your shorten link:</span
-    >
-    <a href="{% url 'users:signupview' %}">Free sign up</a>
-  </div>
-  {% endif %}
-</html>
+{%if user.is_anonymous%}
+<div>
+  <br />
+  <span
+    >Sign up to access data on how many people click your shorten link:</span
+  >
+  <a href="{% url 'users:signupview' %}">Free sign up</a>
+</div>
+{% endif %}
