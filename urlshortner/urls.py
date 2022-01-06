@@ -2,7 +2,7 @@ from django.urls import path
 from .views import RedirectToLinkView, ShortenLinkView, MyLinksView
  
 urlpatterns = [
-    path('shorten', ShortenLinkView.as_view(), 
+    path('', ShortenLinkView.as_view(), 
         name="shortenlinkview"),
     path('my-links', MyLinksView.as_view(), 
         name="mylinksview"),
