@@ -1,6 +1,10 @@
-  {% include "urlshortner/header.html" %} 
+  {% include "urlshortner/header.html" %}
+  {% load static %} 
   {% if not user.is_anonymous %}<span>Logged in as {{ user }}</span>
   {% endif %}
+  <div class="imgSection">
+    <img class="illu" src="{% static 'urlshortner/img/031.png' %}"/>
+  </div>
   <div class="centralSection">
   <div id="centerBox">
     <h1>Fill up the form to shorten your URL</h1>

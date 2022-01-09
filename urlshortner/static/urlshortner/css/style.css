@@ -1,10 +1,44 @@
 body {
   font-family: 'Quicksand', sans-serif;
+  margin: 0px;
 }
 h1 {
   color: white;
-  font-size: 3em;
+  font-size: 2.5em;
   text-align: center;
+}
+
+header {
+  background-color: rgba(0, 0, 0, 0.13);
+  padding: 25px;
+  border-radius: 0 0 12px 12px;
+  margin: 0 25px 0 25px;
+}
+header > ul {
+  display: flex;
+}
+
+header > ul > li {
+  margin-right: 30px;
+  display: block;
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+header > ul > li > a {
+  text-decoration: none;
+  padding: 10px;
+}
+header > ul > li > a:hover {
+  text-decoration: none;
+  background-color: #a57ebb;
+  color: white;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.last {
+  margin-left: auto;
 }
 
 #centerBox {
@@ -26,7 +60,6 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
 }
 
 label {
@@ -49,4 +82,13 @@ input[type='submit'] {
   background-color: #a57ebb;
   color: white;
   font-weight: 700;
+}
+
+.imgSection {
+  display: flex;
+  justify-content: center;
+}
+
+.illu {
+  width: 350px;
 }
