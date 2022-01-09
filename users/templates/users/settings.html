@@ -9,9 +9,11 @@
     {% endfor %}
   </ul>
   {% endif %}
-  <h1>Settings & Profile</h1>
-  <form method="post">
-    {% csrf_token %} {{ form.as_p }}
-    <input type="submit" value="Save" />
-  </form>
+  <div class="centralSection">
+    <h1 class="colored">Settings & Profile</h1>
+    <form method="post">
+      {% csrf_token %} {{ form.as_p }}
+      <input type="submit" value="Save" />
+    </form>
+  </div>
 </html>

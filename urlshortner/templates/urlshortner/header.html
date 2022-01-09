@@ -17,7 +17,12 @@
       <li>
         <a href="{% url 'users:settingsview' user.id %}">Settings</a>
       </li>
-      <li class="last"><a href="{% url 'users:logoutview' %}">Log out</a></li>
+      <li class="last">
+        {% if not user.is_anonymous %}
+        <span>Logged in as {{ user }}</span> 
+        {%endif %}
+        <a href="{% url 'users:logoutview' %}">Log out</a>
+      </li>
     </ul>
   </header>
   {% else %}

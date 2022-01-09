@@ -1,4 +1,9 @@
 <html>
-  <h1>You have been successfully logged out</h1>
-  <a href="{% url 'urlshortner:shortenlinkview' %}"> Revenir sur l'app </a>
+  {% include "urlshortner/header.html" %}
+  <div class="centralSection">
+    <h1 class="colored">You have been successfully logged out</h1>
+    <a href="{% url 'urlshortner:shortenlinkview' %}" class="btn">
+      Go back to the app
+    </a>
+  </div>
 </html>

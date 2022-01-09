@@ -24,7 +24,7 @@ class LogInView(View):
             
             if user is not None:
                 login(request, user)
-                return redirect('/shorten', user=user)
+                return redirect('/', user=user)
             else:
                 #error cant login
                 messages.add_message(request, messages.ERROR, 'Cannot login with the provided credentials.')
@@ -51,7 +51,7 @@ class SignUpView(View):
            
             if user is not None:
                 login(request, user)
-                return redirect('/shorten', user=user)
+                return redirect('/', user=user)
 
         messages.add_message(request, messages.ERROR, 'Form data is invalid.')
         return render(request, "users/signup.html", {'form': form})
