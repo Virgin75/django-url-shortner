@@ -7,7 +7,7 @@ from .utils import generate_unique_slug
 
 # Test if home page is displayed correctly
 def test_home_is_displayed(client):
-    req = client.get('/shorten')
+    req = client.get('/')
     assert b'Fill up the form to shorten your URL' in req.content
     assert req.status_code == 200
 
