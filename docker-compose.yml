@@ -22,9 +22,10 @@ services:
   web:
     build: .
     command: >
-      sh -c "python manage.py makemigrations &&
-             python manage.py migrate &&
-             python manage.py collectstatic --noinput &&
+      sh -c "python3 manage.py makemigrations users &&
+             python3 manage.py makemigrations urlshortner &&
+             python3 manage.py migrate &&
+             python3 manage.py collectstatic --noinput &&
              gunicorn --bind 0.0.0.0:8000 config.wsgi"
     volumes:
       - .:/app
